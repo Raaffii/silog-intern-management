@@ -1,8 +1,6 @@
 
 const { insertDataSignup, loginCheck } = require("../services/User")
 
-
-
 const tampilSignup = (req, res) => {
     return res.render("signup", {
         layout: 'layouts/auth-layout'
@@ -21,7 +19,8 @@ const signup = async (req, res) => {
 
 const tampilLogin = (req, res) => {
     return res.render("login", {
-        layout: 'layouts/auth-layout'
+        layout: 'layouts/auth-layout',
+        msg: req.flash('msg')
     })
 }
 
@@ -31,7 +30,8 @@ const login = async (req, res) => {
     if (result.succes) {
         res.send(result.message)
     } else {
-        res.send(result.message)
+        req.flash('msg', 'Gagal Masuk')
+        res.redirect('/user/login')
     }
 }
 
