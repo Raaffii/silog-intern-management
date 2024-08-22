@@ -38,11 +38,12 @@ const loginCheck = async (query) => {
         const isPasswordMatch = await bcrypt.compare(query.password, check.password)
 
         if (isPasswordMatch) {
-            return { succes: true, message: "Masuk" }
+            return { succes: true, message: "Masuk", akun: check }
         } else {
             return { succes: false, message: "Password Salah" }
         }
     }
 }
+
 
 module.exports = { insertDataSignup, loginCheck }
