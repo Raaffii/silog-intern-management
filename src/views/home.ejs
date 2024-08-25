@@ -34,6 +34,25 @@
               </tr>
             </thead>
             <tbody>
+              <% data.forEach((ajuan,i) => { %>
+              <tr>
+                <td><%= ++i %></td>
+                <td><%= ajuan.nama %></td>
+                <td><%= ajuan.nip %></td>
+                <td><%= ajuan.instansi %></td>
+                <td><%= ajuan.fakultas %></td>
+                <td><%= ajuan.jurusan %></td>
+                <td><%= ajuan.email %></td>
+                <td><%= ajuan.tanggalmulai %></td>
+                <td><%= ajuan.tanggalselesai %></td>
+                <td><%= ajuan.foto %></td>
+                <td><%= ajuan.ktp %></td>
+                <td><%= ajuan.ktm %></td>
+                <td><%= ajuan.proposal %></td>
+                <td></td>
+                <td>Aksi</td>
+              </tr>
+              <% }); %>
             </tbody>
           </table>
         </div>
@@ -43,19 +62,19 @@
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
-    <div class="modal-content">
+    <div class="modal-content" style="background-color: rgb(249, 249, 249);">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form id="submissionForm" class="form-sample" method="post" action="/pengajuan/submit" enctype="multipart/form-data">
+          <form id="submissionForm" class="form-sample" method="post" action="/mahasiswa/dashboard" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputUsername1">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="nama" name="nama" required>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama" name="nama" required>
                 </div>
               </div>
               <div class="col-md-6">
@@ -66,7 +85,61 @@
               </div>
             </div>
             <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Instansi</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Instansi" name="instansi" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Jurusan</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Jurusan" name="jurusan" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Fakultas</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Fakultas" name="fakultas" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">No. Telp</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="No telp" name="telp" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Email</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Email" name="email" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label for="exampleInputUsername1">Minat apa yang ingin anda pelajari selama PKL</label>
+                <textarea name="minat" id="" class="form-control" rows="10"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Tanggal Mulai</label>
+                  <input type="date" class="form-control" id="exampleInputUsername1" name="tanggalMulai" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Tanggal Selesi</label>
+                  <input type="date" class="form-control" id="exampleInputUsername1" placeholder="Email" name="tanggalSelesai" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>KTP</label>
                   <div class="input-group col-xs-12">
@@ -74,7 +147,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>Foto</label>
                   <div class="input-group col-xs-12">
@@ -82,8 +155,38 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>KTM</label>
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info" placeholder="Upload KTM" name="ktm">
+                  </div>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-primary" type="submit">Save changes</button>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Proposal</label>
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info" placeholder="Upload Proposal" name="proposal">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Asuransi Bila Ada</label>
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info" placeholder="Upload Asuransi" name="asuransi">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mt-3">
+                <button class="btn btn-primary" type="submit">Save changes</button>
+              </div>
+            </div>
           </form>
 
         </div>

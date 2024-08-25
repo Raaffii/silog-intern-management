@@ -1,7 +1,13 @@
 const { insertDataPengajuan } = require("../services/Pengajuan");
 const { upload, handleMulterError } = require("../../utils/multer");
 
-const uploadFile = upload.fields([{ name: "ktp" }, { name: "foto" }]);
+const uploadFile = upload.fields([
+  { name: "ktp" },
+  { name: "foto" },
+  { name: "ktm" },
+  { name: "proposal" },
+  { name: "asuransi" },
+]);
 
 handleMulterErrorController = handleMulterError;
 
@@ -14,12 +20,23 @@ const submitPengajuan = async (req, res) => {
     res.redirect("/mahasiswa/dashboard");
   } else {
     const dataToSave = {
+      user: req.session.user.id,
       nama: req.body.nama,
       nip: req.body.nip,
+      instansi: req.body.instansi,
+      fakultas: req.body.fakultas,
+      jurusan: req.body.jurusan,
+      email: req.body.email,
+      notelp: req.body.notelp,
+      minat: req.body.minat,
+      tanggalmulai: req.body.tanggalMulai,
+      tanggalselesai: req.body.tanggalSelesai,
+      ktm: req.files["ktm"][0].path,
+      asuransi: req.files["asuransi"] ? req.files["asuransi"][0].path : null,
       ktp: req.files["ktp"][0].path,
       foto: req.files["foto"][0].path,
+      proposal: req.files["proposal"][0].path,
     };
-
     const result = await insertDataPengajuan(dataToSave);
     req.flash("msg", result.message);
     res.redirect("/mahasiswa/dashboard");

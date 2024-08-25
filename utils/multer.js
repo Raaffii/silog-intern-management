@@ -8,6 +8,12 @@ const storage = multer.diskStorage({
       cb(null, "public/uploads/ktp/");
     } else if (file.fieldname === "foto") {
       cb(null, "public/uploads/foto/");
+    } else if (file.fieldname === "ktm") {
+      cb(null, "public/uploads/ktm/");
+    } else if (file.fieldname === "asuransi") {
+      cb(null, "public/uploads/asuransi/");
+    } else if (file.fieldname === "proposal") {
+      cb(null, "public/uploads/proposal/");
     } else {
       cb(new Error("Unknown field"));
     }
@@ -32,6 +38,29 @@ const fileFilter = (req, file, cb) => {
     } else {
       req.fileValidationError =
         "Invalid file type for Foto, only JPG or PNG allowed";
+      cb(null, false);
+    }
+  } else if (file.fieldname === "proposal") {
+    if (file.mimetype === "application/pdf") {
+      cb(null, true);
+    } else {
+      req.fileValidationError =
+        "Invalid file type for Proposal, only PDF allowed";
+      cb(null, false);
+    }
+  } else if (file.fieldname === "asuransi") {
+    if (file.mimetype === "application/pdf") {
+      cb(null, true);
+    } else {
+      req.fileValidationError =
+        "Invalid file type for Asuransi, only PDF allowed";
+      cb(null, false);
+    }
+  } else if (file.fieldname === "ktm") {
+    if (file.mimetype === "application/pdf") {
+      cb(null, true);
+    } else {
+      req.fileValidationError = "Invalid file type for KTM, only PDF allowed";
       cb(null, false);
     }
   } else {

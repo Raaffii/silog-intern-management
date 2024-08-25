@@ -8,4 +8,9 @@ const insertDataPengajuan = async (data) => {
   return { succes: true, message: `Berhasil Menambahkan ${data.nama}` };
 };
 
-module.exports = { insertDataPengajuan };
+const readDataPengajuan = async (id) => {
+  dataPengajuan = await tb_pengajuan.find({ user: id });
+  return dataPengajuan;
+};
+
+module.exports = { insertDataPengajuan, readDataPengajuan };

@@ -41,5 +41,4 @@ app.listen(port, () => {
 });
 
 app.use("/user", routerUser);
-app.use("/pengajuan", routerPengajuan);
 app.use("/mahasiswa", routerMahasiswa);
