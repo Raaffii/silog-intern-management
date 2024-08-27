@@ -13,4 +13,12 @@ const readDataPengajuan = async (id) => {
   return dataPengajuan;
 };
 
-module.exports = { insertDataPengajuan, readDataPengajuan };
+const deleteDataPengajuan = async (id) => {
+  await tb_pengajuan.deleteOne({ _id: id });
+};
+
+module.exports = {
+  insertDataPengajuan,
+  readDataPengajuan,
+  deleteDataPengajuan,
+};

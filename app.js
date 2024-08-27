@@ -4,7 +4,7 @@ const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
-
+const methodOverride = require("method-override");
 //router----------------
 const routerUser = require("./src/routes/User.js");
 const routerMahasiswa = require("./src/routes/Mahasiswa.js");
@@ -13,6 +13,9 @@ const routerPengajuan = require("./src/routes/Pengajuan.js");
 //express setup
 const app = express();
 const port = 5000;
+
+//setup method override
+app.use(methodOverride("_method"));
 
 //konfigurasi flash
 app.use(cookieParser("secret"));
@@ -41,4 +44,15 @@ app.listen(port, () => {
 });
 
 app.use("/user", routerUser);
+//fungsi middlewere login dulu bro
+const ensureAuthenticated = (req, res, next) => {
+  if (req.session && req.session.user) {
+    return next();
+  } else {
+    req.flash("msg", "Anda harus login untuk mengakses halaman ini.");
+    return res.redirect("/user/login");
+  }
+};
+app.use(ensureAuthenticated);
+
 app.use("/mahasiswa", routerMahasiswa);

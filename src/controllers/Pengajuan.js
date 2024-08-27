@@ -31,11 +31,13 @@ const submitPengajuan = async (req, res) => {
       minat: req.body.minat,
       tanggalmulai: req.body.tanggalMulai,
       tanggalselesai: req.body.tanggalSelesai,
-      ktm: req.files["ktm"][0].path,
-      asuransi: req.files["asuransi"] ? req.files["asuransi"][0].path : null,
-      ktp: req.files["ktp"][0].path,
-      foto: req.files["foto"][0].path,
-      proposal: req.files["proposal"][0].path,
+      ktm: req.files["ktm"][0].filename,
+      asuransi: req.files["asuransi"]
+        ? req.files["asuransi"][0].filename
+        : null,
+      ktp: req.files["ktp"][0].filename,
+      foto: req.files["foto"][0].filename,
+      proposal: req.files["proposal"][0].filename,
     };
     const result = await insertDataPengajuan(dataToSave);
     req.flash("msg", result.message);

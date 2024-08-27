@@ -4,10 +4,11 @@
       <div class="card-body">
         <h4 class="card-title">Financial management review</h4>
         <div class="table-responsive">
+          <% if (data.length <3){ %>
           <button type="button" class="btn btn-dark btn-icon-text" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="mdi mdi-account-plus btn-icon-prepend"></i>
-            Submit
+            <i class="mdi mdi-account-plus btn-icon-prepend"> Submit : <%= data.length %></i>
           </button>
+          <% } %>
           <% if(msg.length !==0 ){ %>
           <div class="alert alert-danger mt-3" role="alert">
             <%= msg %>
@@ -45,12 +46,17 @@
                 <td><%= ajuan.email %></td>
                 <td><%= ajuan.tanggalmulai %></td>
                 <td><%= ajuan.tanggalselesai %></td>
-                <td><%= ajuan.foto %></td>
-                <td><%= ajuan.ktp %></td>
-                <td><%= ajuan.ktm %></td>
-                <td><%= ajuan.proposal %></td>
+                <td><a href="/mahasiswa/dashboard/foto/<%= ajuan.foto %>">foto</a></td>
+                <td><a href="/mahasiswa/dashboard/ktp/<%= ajuan.ktp %>">ktp</a></td>
+                <td><a href="/mahasiswa/dashboard/ktm/<%= ajuan.ktm %>">ktm</a></td>
+                <td><a href="/mahasiswa/dashboard/proposal/<%= ajuan.proposal %>">proposal</a></td>
                 <td></td>
-                <td>Aksi</td>
+                <td>
+                  <form method="POST" action="/mahasiswa/dashboard?_method=DELETE" class="d-inline">
+                    <input type="hidden" name="id" value="<%= ajuan._id %>">
+                    <button type="submit" class="btn btn-danger badge" onclick="return confirm('yakin?')">Hapus</button>
+                  </form>
+                </td>
               </tr>
               <% }); %>
             </tbody>

@@ -13,6 +13,7 @@ const insertDataSignup = async (query) => {
       username: query.username,
       password: query.password,
       email: query.email,
+      status: 1,
     };
 
     hashedPassword = await bcrypt.hash(dataUserBaru.password, 10);
