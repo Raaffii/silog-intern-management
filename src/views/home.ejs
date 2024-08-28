@@ -4,11 +4,148 @@
       <div class="card-body">
         <h4 class="card-title">Financial management review</h4>
         <div class="table-responsive">
+          <%  if ((data[0] && data[0].status == 1) || !data[0]) {  %>
           <% if (data.length <3){ %>
           <button type="button" class="btn btn-dark btn-icon-text" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="mdi mdi-account-plus btn-icon-prepend"> Submit : <%= data.length %></i>
           </button>
           <% } %>
+          <% } %>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content" style="background-color: rgb(249, 249, 249);">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <form id="submissionForm" class="form-sample" method="post" action="/mahasiswa/dashboard" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama" name="nama" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">NIP/NIM/NIS</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="NIP/NIM/NIS" name="nip" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Instansi</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Instansi" name="instansi" required>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Jurusan</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Jurusan" name="jurusan" required>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Fakultas</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Fakultas" name="fakultas" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">No. Telp</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="No telp" name="telp" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Email</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Email" name="email" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+                          <label for="exampleInputUsername1">Minat apa yang ingin anda pelajari selama PKL</label>
+                          <textarea name="minat" id="" class="form-control" rows="10"></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Tanggal Mulai</label>
+                            <input type="date" class="form-control" id="exampleInputUsername1" name="tanggalMulai" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">Tanggal Selesi</label>
+                            <input type="date" class="form-control" id="exampleInputUsername1" placeholder="Email" name="tanggalSelesai" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>KTP</label>
+                            <div class="input-group col-xs-12">
+                              <input type="file" class="form-control file-upload-info" placeholder="Upload KTP" name="ktp">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Foto</label>
+                            <div class="input-group col-xs-12">
+                              <input type="file" class="form-control file-upload-info" placeholder="Upload Foto" name="foto">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>KTM</label>
+                            <div class="input-group col-xs-12">
+                              <input type="file" class="form-control file-upload-info" placeholder="Upload KTM" name="ktm">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Proposal</label>
+                            <div class="input-group col-xs-12">
+                              <input type="file" class="form-control file-upload-info" placeholder="Upload Proposal" name="proposal">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Asuransi Bila Ada</label>
+                            <div class="input-group col-xs-12">
+                              <input type="file" class="form-control file-upload-info" placeholder="Upload Asuransi" name="asuransi">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mt-3">
+                          <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
           <% if(msg.length !==0 ){ %>
           <div class="alert alert-danger mt-3" role="alert">
             <%= msg %>
@@ -31,7 +168,7 @@
                 <th>KTM</th>
                 <th>Proposal</th>
                 <th>Status</th>
-                <th>Aksi</th>
+
               </tr>
             </thead>
             <tbody>
@@ -50,154 +187,55 @@
                 <td><a href="/mahasiswa/dashboard/ktp/<%= ajuan.ktp %>">ktp</a></td>
                 <td><a href="/mahasiswa/dashboard/ktm/<%= ajuan.ktm %>">ktm</a></td>
                 <td><a href="/mahasiswa/dashboard/proposal/<%= ajuan.proposal %>">proposal</a></td>
-                <td></td>
+                <td><% if(ajuan.status==1){ %>
+                  <label class="badge badge-danger">Belum Diajukan</label>
+                  <% } else if (ajuan.status==2){%>
+                  <label class="badge badge-warning">Proses oleh Biro SDM</label>
+                  <% } else if(ajuan.status==3){ %>
+                  <label class="badge badge-warning">Proses oleh Biro Tujuan</label>
+                  <%  } %>
+                </td>
+                <% if(ajuan.status == 1 ){ %>
                 <td>
                   <form method="POST" action="/mahasiswa/dashboard?_method=DELETE" class="d-inline">
                     <input type="hidden" name="id" value="<%= ajuan._id %>">
                     <button type="submit" class="btn btn-danger badge" onclick="return confirm('yakin?')">Hapus</button>
                   </form>
                 </td>
+                <% } %>
               </tr>
               <% }); %>
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content" style="background-color: rgb(249, 249, 249);">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-          <form id="submissionForm" class="form-sample" method="post" action="/mahasiswa/dashboard" enctype="multipart/form-data">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama" name="nama" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">NIP/NIM/NIS</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="NIP/NIM/NIS" name="nip" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Instansi</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Instansi" name="instansi" required>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Jurusan</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Jurusan" name="jurusan" required>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Fakultas</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Fakultas" name="fakultas" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">No. Telp</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="No telp" name="telp" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Email</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Email" name="email" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group">
-                <label for="exampleInputUsername1">Minat apa yang ingin anda pelajari selama PKL</label>
-                <textarea name="minat" id="" class="form-control" rows="10"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Tanggal Mulai</label>
-                  <input type="date" class="form-control" id="exampleInputUsername1" name="tanggalMulai" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputUsername1">Tanggal Selesi</label>
-                  <input type="date" class="form-control" id="exampleInputUsername1" placeholder="Email" name="tanggalSelesai" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>KTP</label>
-                  <div class="input-group col-xs-12">
-                    <input type="file" class="form-control file-upload-info" placeholder="Upload KTP" name="ktp">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Foto</label>
-                  <div class="input-group col-xs-12">
-                    <input type="file" class="form-control file-upload-info" placeholder="Upload Foto" name="foto">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>KTM</label>
-                  <div class="input-group col-xs-12">
-                    <input type="file" class="form-control file-upload-info" placeholder="Upload KTM" name="ktm">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Proposal</label>
-                  <div class="input-group col-xs-12">
-                    <input type="file" class="form-control file-upload-info" placeholder="Upload Proposal" name="proposal">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Asuransi Bila Ada</label>
-                  <div class="input-group col-xs-12">
-                    <input type="file" class="form-control file-upload-info" placeholder="Upload Asuransi" name="asuransi">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mt-3">
-                <button class="btn btn-primary" type="submit">Save changes</button>
-              </div>
-            </div>
-          </form>
+        <% if ((data[0] && data[0].status == 1) || !data[0]) {  %>
+        <button type="button" class="btn btn-primary float-end mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal29">
+          Ajukan
+        </button>
+        <% } %>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal29" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi Ajuan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Data yang telah diajukan tidak bisa diubah
+              </div>
+              <form action="/mahasiswa/dashboard/<%= akun.username %>" method="post">
+                <div class="modal-footer">
+                  <input type="hidden" value="<%= akun.id  %>" name="akunid">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button class="btn btn-primary" type="submit">konfirmasi</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

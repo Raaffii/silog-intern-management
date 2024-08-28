@@ -14,7 +14,7 @@ const user = mongoose.model("user", {
     type: String,
   },
   status: {
-    type: String,
+    type: Number,
   },
 });
 

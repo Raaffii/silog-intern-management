@@ -1,4 +1,7 @@
-const { insertDataPengajuan } = require("../services/Pengajuan");
+const {
+  insertDataPengajuan,
+  updateTambahStatus,
+} = require("../services/Pengajuan");
 const { upload, handleMulterError } = require("../../utils/multer");
 
 const uploadFile = upload.fields([
@@ -38,6 +41,7 @@ const submitPengajuan = async (req, res) => {
       ktp: req.files["ktp"][0].filename,
       foto: req.files["foto"][0].filename,
       proposal: req.files["proposal"][0].filename,
+      status: 1,
     };
     const result = await insertDataPengajuan(dataToSave);
     req.flash("msg", result.message);
@@ -45,4 +49,15 @@ const submitPengajuan = async (req, res) => {
   }
 };
 
-module.exports = { submitPengajuan, uploadFile, handleMulterErrorController };
+const ajukanPengajuan = (req, res) => {
+  updateTambahStatus(req.body.akunid);
+  req.flash("msg", "ajuan berhasil");
+  res.redirect("/mahasiswa/dashboard");
+};
+
+module.exports = {
+  submitPengajuan,
+  uploadFile,
+  ajukanPengajuan,
+  handleMulterErrorController,
+};

@@ -13,21 +13,65 @@
       <span class="mdi mdi-menu"></span>
     </button>
   </div>
-  <div class="navbar-menu-wrapper d-none d-lg-flex align-items-center">
-    <div class="btn btn-rounded" style="background-color: rgba(229, 45, 45, 0.9);">Pendaftaran (Oleh User)</div>
-    <div class="btn-rounded" style="color: antiquewhite;">
-      <h1><i class="mdi mdi-arrow-right"></i></h1>
-    </div>
-    <div class="btn btn-rounded" style="background-color: rgba(249, 249, 249, 0.9);">Konfirmasi SDM (Oleh Admin)</div>
-    <div class="btn-rounded" style="color: antiquewhite;">
-      <h1><i class="mdi mdi-arrow-right"></i></h1>
-    </div>
-    <div class="btn btn-rounded" style="background-color: rgba(249, 249, 249, 0.9);">Konfirmasi Biro Tujuan (Oleh Admin)</div>
-    <div class="btn-rounded" style="color: antiquewhite;">
-      <h1><i class="mdi mdi-arrow-right"></i></h1>
-    </div>
-    <div class="btn btn-rounded" style="background-color: rgba(249, 249, 249, 0.9);">Hasil</div>
+  <%
+  let ongoing=null
+  if(data[0]){
+    ongoing=data[0].status
+  }
+  %>
 
+  <div class="navbar-menu-wrapper d-none d-lg-flex align-items-center">
+    <!-- Button 1 -->
+    <% if(ongoing <= 1){ %>
+    <div class="btn btn-rounded" style="background-color:<%= data[0]&& (data[0].status == 1 || data[0].status > 1) ? 'rgba(255, 123, 0, 0.9)' : 'rgba(249, 249, 249, 0.9)' %>">
+      Pendaftaran (Oleh User)
+    </div>
+    <% } else { %>
+    <div class="btn btn-rounded" style="background-color:rgb(174, 255, 0)">
+      Pendaftaran (Oleh User)
+    </div>
+    <% } %>
+    <!-- Arrow 1 -->
+    <div class="btn-rounded" style="color: antiquewhite;">
+      <h1><i class="mdi mdi-arrow-right"></i></h1>
+    </div>
+
+    <!-- Button 2 -->
+    <% if(ongoing <= 2){ %>
+    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 2) ? 'rgba(255, 123, 0, 0.9)' : 'rgba(249, 249, 249, 0.9)' %>">
+      Konfirmasi SDM (Oleh Admin)
+    </div>
+    <% } else { %>
+    <div class="btn btn-rounded" style="background-color:rgb(174, 255, 0)">
+      Konfirmasi SDM (Oleh Admin)
+    </div>
+    <% } %>
+
+    <!-- Arrow 2 -->
+    <div class="btn-rounded" style="color: antiquewhite;">
+      <h1><i class="mdi mdi-arrow-right"></i></h1>
+    </div>
+
+    <!-- Button 3 -->
+    <% if(ongoing <= 3){ %>
+    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 3) ? 'rgba(255, 123, 0, 0.9)' : 'rgba(249, 249, 249, 0.9)' %>">
+      Konfirmasi Biro Tujuan (Oleh Admin)
+    </div>
+    <% } else { %>
+    <div class="btn btn-rounded" style="background-color: rgb(174, 255, 0)">
+      Konfirmasi Biro Tujuan (Oleh Admin)
+    </div>
+    <% } %>
+    <!-- Arrow 3 -->
+    <div class="btn-rounded" style="color: antiquewhite;">
+      <h1><i class="mdi mdi-arrow-right"></i></h1>
+    </div>
+
+    <!-- Button 4 -->
+    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 4) ? 'rgba(255, 123, 0, 0.9)' : 'rgba(249, 249, 249, 0.9)' %>;">
+      Hasil
+    </div>
   </div>
+
 
 </nav>

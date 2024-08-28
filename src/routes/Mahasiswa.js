@@ -10,10 +10,12 @@ const {
   submitPengajuan,
   uploadFile,
   handleMulterErrorController,
+  ajukanPengajuan,
 } = require("../controllers/Pengajuan.js");
 
 routerMahasiswa.get("/dashboard/:jenis/:namaFile", tampilDetailDokumen);
 routerMahasiswa.get("/dashboard", tampilDashboard);
+routerMahasiswa.post("/dashboard/:username", ajukanPengajuan);
 routerMahasiswa.post(
   "/dashboard",
   uploadFile,
