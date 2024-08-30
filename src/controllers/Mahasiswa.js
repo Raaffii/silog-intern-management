@@ -7,7 +7,6 @@ const {
 
 const tampilDashboard = async (req, res) => {
   const data = (await readDataPengajuan(req.session.user.id)) || [];
-  const dataUser= 
   console.log(req.session.user);
   return res.render("home", {
     layout: "layouts/main-layout",

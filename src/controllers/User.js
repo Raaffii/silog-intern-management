@@ -32,10 +32,14 @@ const login = async (req, res) => {
       username: result.akun.username,
       email: result.akun.email,
       id: result.akun._id,
-      role: "mahasiswa",
+      role: result.akun.roleId,
     };
     req.session.user = akun;
-    res.redirect("/mahasiswa/dashboard");
+    if (result.akun.roleId == 1) {
+      res.redirect("/mahasiswa/dashboard");
+    } else {
+      res.redirect("/admin/dashboard");
+    }
   } else {
     req.flash("msg", result.message);
     req.flash("isiUsername", req.body.username);

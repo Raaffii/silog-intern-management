@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 const routerUser = require("./src/routes/User.js");
 const routerMahasiswa = require("./src/routes/Mahasiswa.js");
 const routerPengajuan = require("./src/routes/Pengajuan.js");
+const routerAdmin = require("./src/routes/Admin.js");
 
 //express setup
 const app = express();
@@ -56,3 +57,4 @@ const ensureAuthenticated = (req, res, next) => {
 app.use(ensureAuthenticated);
 
 app.use("/mahasiswa", routerMahasiswa);
+app.use("/admin", routerAdmin);

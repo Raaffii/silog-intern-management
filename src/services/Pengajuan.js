@@ -10,12 +10,76 @@ const insertDataPengajuan = async (data) => {
 };
 
 const readDataPengajuan = async (id) => {
-  dataPengajuan = await tb_pengajuan.find({ user: id });
+  if (Number.isInteger(id)) {
+    dataPengajuan = await tb_pengajuan.find({ status: id });
+  } else {
+    dataPengajuan = await tb_pengajuan.find({ user: id });
+  }
   return dataPengajuan;
 };
 
 const deleteDataPengajuan = async (id) => {
   await tb_pengajuan.deleteOne({ _id: id });
+};
+
+const kelompokanPengajuan = async (data) => {
+  let acc = null;
+  let acc2 = null;
+  let acc3 = null;
+  let idBefore = null;
+  let idBefore2 = null;
+  let data2 = [];
+
+  // Mengiterasi data
+  data.forEach((dt) => {
+    if (idBefore && idBefore == dt.user) {
+      console.log(`1 ${dt.nama}`);
+      acc = {
+        nama3: dt.nama || "-",
+        instansi3: dt.instansi || "-",
+      }; // Update idBefore2
+      idBefore = null;
+    } else if (idBefore2 && idBefore2 == dt.user) {
+      console.log(`2 ${dt.nama}`);
+      acc2 = {
+        nama2: dt.nama || "-",
+        instansi2: dt.instansi || "-",
+      };
+      idBefore = dt.user; // Update idBefore2
+      idBefore2 = null;
+    } else {
+      console.log(`3 ${dt.nama}`);
+      if (acc || acc2 || acc3) {
+        acc = {
+          ...(acc || { nama3: "-", instansi3: "-" }),
+          ...(acc2 || { nama2: "-", instansi2: "-" }),
+          ...acc3,
+        };
+        data2.push(acc);
+        acc3 = null;
+        acc2 = null;
+        acc = null;
+      }
+      acc3 = {
+        nama1: dt.nama,
+        instansi1: dt.instansi,
+      };
+      idBefore2 = dt.user; // Update idBefore2
+    }
+  });
+  if (acc || acc2 || acc3) {
+    acc = {
+      ...(acc3 || { nama3: "-", instansi3: "-" }),
+      ...(acc2 || { nama2: "-", instansi2: "-" }),
+      ...acc,
+    };
+    data2.push(acc);
+    acc = null;
+    acc2 = null;
+    acc3 = null;
+  }
+
+  return data2;
 };
 
 const updateTambahStatus = async (id) => {
@@ -31,4 +95,5 @@ module.exports = {
   readDataPengajuan,
   deleteDataPengajuan,
   updateTambahStatus,
+  kelompokanPengajuan,
 };

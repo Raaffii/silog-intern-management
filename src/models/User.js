@@ -16,6 +16,9 @@ const user = mongoose.model("user", {
   status: {
     type: Number,
   },
+  roleId: {
+    type: Number,
+  },
 });
 
 module.exports = { user };
