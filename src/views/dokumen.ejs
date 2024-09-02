@@ -3,7 +3,11 @@
     <div class="card">
       <div class="card-body">
         <h2>Data <%=data.jenis %></h2>
+        <% if(akun.role==1){ %>
         <a href="/mahasiswa/dashboard">&laquo;Kembali</a>
+        <% }else{ %>
+        <a href="javascript:history.back()">&laquo; Kembali</a>
+        <% } %>
         <iframe id="pdfViewer" src="<%= data.filePath %>" width="100%" height="1000px"></iframe>
       </div>
     </div>

@@ -5,12 +5,13 @@
         <h4 class="card-title">Financial management review</h4>
         <div class="table-responsive">
           <%  if ((data[0] && data[0].status == 1) || !data[0]) {  %>
-          <% if (data.length <3){ %>
+          <% if (data.length <3 && akun.role==1){ %>
           <button type="button" class="btn btn-dark btn-icon-text" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="mdi mdi-account-plus btn-icon-prepend"> Submit : <%= data.length %></i>
           </button>
           <% } %>
           <% } %>
+          <a href="javascript:history.back()">&laquo; Kembali</a>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
               <div class="modal-content" style="background-color: rgb(249, 249, 249);">
@@ -187,6 +188,7 @@
                 <td><a href="/mahasiswa/dashboard/ktp/<%= ajuan.ktp %>">ktp</a></td>
                 <td><a href="/mahasiswa/dashboard/ktm/<%= ajuan.ktm %>">ktm</a></td>
                 <td><a href="/mahasiswa/dashboard/proposal/<%= ajuan.proposal %>">proposal</a></td>
+                <% if(akun.role==1){ %>
                 <td><% if(ajuan.status==1){ %>
                   <label class="badge badge-danger">Belum Diajukan</label>
                   <% } else if (ajuan.status==2){%>
@@ -195,6 +197,11 @@
                   <label class="badge badge-warning">Proses oleh Biro Tujuan</label>
                   <%  } %>
                 </td>
+                <% }else{ %>
+                <td>
+                  <button>Konfirmasi</button>
+                </td>
+                <% } %>
                 <% if(ajuan.status == 1 ){ %>
                 <td>
                   <form method="POST" action="/mahasiswa/dashboard?_method=DELETE" class="d-inline">

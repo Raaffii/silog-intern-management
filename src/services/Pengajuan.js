@@ -33,14 +33,12 @@ const kelompokanPengajuan = async (data) => {
   // Mengiterasi data
   data.forEach((dt) => {
     if (idBefore && idBefore == dt.user) {
-      console.log(`1 ${dt.nama}`);
       acc = {
         nama3: dt.nama || "-",
         instansi3: dt.instansi || "-",
       }; // Update idBefore2
       idBefore = null;
     } else if (idBefore2 && idBefore2 == dt.user) {
-      console.log(`2 ${dt.nama}`);
       acc2 = {
         nama2: dt.nama || "-",
         instansi2: dt.instansi || "-",
@@ -48,7 +46,6 @@ const kelompokanPengajuan = async (data) => {
       idBefore = dt.user; // Update idBefore2
       idBefore2 = null;
     } else {
-      console.log(`3 ${dt.nama}`);
       if (acc || acc2 || acc3) {
         acc = {
           ...(acc || { nama3: "-", instansi3: "-" }),
@@ -61,6 +58,7 @@ const kelompokanPengajuan = async (data) => {
         acc = null;
       }
       acc3 = {
+        id: dt.user,
         nama1: dt.nama,
         instansi1: dt.instansi,
       };

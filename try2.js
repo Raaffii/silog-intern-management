@@ -1,7 +1,4 @@
-const x = 2;
-let y = 3;
-if (x > 1) {
-  y = 4;
-}
+const cobak = [2, 3, 4, 5];
+const cobak2 = cobak.slice(0, 2);
 
-console.log(y);
+console.log(cobak2);
