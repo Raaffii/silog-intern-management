@@ -15,6 +15,7 @@ const insertDataSignup = async (query) => {
       email: query.email,
       status: 1,
       roleId: 1,
+      biro: 0,
     };
 
     hashedPassword = await bcrypt.hash(dataUserBaru.password, 10);
@@ -44,4 +45,8 @@ const loginCheck = async (query) => {
   }
 };
 
-module.exports = { insertDataSignup, loginCheck };
+const updateBiro = async (biro, id) => {
+  await user.updateOne({ _id: id }, { $set: { biro: biro } });
+};
+
+module.exports = { insertDataSignup, loginCheck, updateBiro };

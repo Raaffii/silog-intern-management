@@ -45,6 +45,7 @@ app.listen(port, () => {
 });
 
 app.use("/user", routerUser);
+
 //fungsi middlewere login dulu bro
 const ensureAuthenticated = (req, res, next) => {
   if (req.session && req.session.user) {

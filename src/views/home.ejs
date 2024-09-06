@@ -9,9 +9,11 @@
           <button type="button" class="btn btn-dark btn-icon-text" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="mdi mdi-account-plus btn-icon-prepend"> Submit : <%= data.length %></i>
           </button>
-          <% } %>
-          <% } %>
+          <% } else{ %>
           <a href="javascript:history.back()">&laquo; Kembali</a>
+          <% } %>
+          <% } %>
+
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
               <div class="modal-content" style="background-color: rgb(249, 249, 249);">
@@ -168,13 +170,12 @@
                 <th>KTP</th>
                 <th>KTM</th>
                 <th>Proposal</th>
-                <th>Status</th>
-
               </tr>
             </thead>
             <tbody>
               <% data.forEach((ajuan,i) => { %>
               <tr>
+                <% id=ajuan.user %>
                 <td><%= ++i %></td>
                 <td><%= ajuan.nama %></td>
                 <td><%= ajuan.nip %></td>
@@ -197,11 +198,8 @@
                   <label class="badge badge-warning">Proses oleh Biro Tujuan</label>
                   <%  } %>
                 </td>
-                <% }else{ %>
-                <td>
-                  <button>Konfirmasi</button>
-                </td>
                 <% } %>
+
                 <% if(ajuan.status == 1 ){ %>
                 <td>
                   <form method="POST" action="/mahasiswa/dashboard?_method=DELETE" class="d-inline">
@@ -215,12 +213,13 @@
             </tbody>
           </table>
         </div>
+
+        <% if(akun.role == 1) { %>
         <% if ((data[0] && data[0].status == 1) || !data[0]) {  %>
         <button type="button" class="btn btn-primary float-end mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal29">
           Ajukan
         </button>
         <% } %>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal29" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -242,6 +241,36 @@
             </div>
           </div>
         </div>
+        <% }  else {%>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary float-end mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal11">
+          Konfirmasi
+        </button>
+
+        <div class="modal fade" id="exampleModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajukan Pada Biro</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/admin/dashboard/<%= id  %>" method="post">
+                  <select class="form-select" aria-label="Default select example" name="biro">
+                    <option value="1">Kabiro IT</option>
+                    <option value="2">Kabiro SDM</option>
+                    <option value="3">Kabiro Ifrastruktur</option>
+                  </select>
+                  <br>
+                  <button type="submit">Kirim</button>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <% } %>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ const {
   insertDataPengajuan,
   updateTambahStatus,
 } = require("../services/Pengajuan");
+const { updateBiro } = require("../services/User");
 const { upload, handleMulterError } = require("../../utils/multer");
 
 const uploadFile = upload.fields([
@@ -55,9 +56,17 @@ const ajukanPengajuan = (req, res) => {
   res.redirect("/mahasiswa/dashboard");
 };
 
+const konfirmasiPengajuanAdmin = (req, res) => {
+  updateTambahStatus(req.params.id);
+  updateBiro(req.body.biro, req.params.id);
+  req.flash("msg", "berhasil di ajukan");
+  res.redirect("/admin/dashboard");
+};
+
 module.exports = {
   submitPengajuan,
   uploadFile,
   ajukanPengajuan,
+  konfirmasiPengajuanAdmin,
   handleMulterErrorController,
 };
