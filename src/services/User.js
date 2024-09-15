@@ -1,3 +1,4 @@
+const { kabiro } = require("../models/Kabiro.js");
 const { user } = require("../models/User.js");
 const bcrypt = require("bcrypt");
 
@@ -28,20 +29,28 @@ const insertDataSignup = async (query) => {
 };
 
 const loginCheck = async (query) => {
-  const check = await user.findOne({ username: query.username });
+  let check = await user.findOne({ username: query.username });
+  let isPasswordMatch;
   if (!check) {
-    return { succes: false, message: "Username tidak ditemukan" };
-  } else {
-    const isPasswordMatch = await bcrypt.compare(
-      query.password,
-      check.password
-    );
-
-    if (isPasswordMatch) {
-      return { succes: true, message: "Masuk", akun: check };
+    check = await kabiro.findOne({ kabiro: query.username });
+    if (!check) {
+      return { succes: false, message: "Username tidak ditemukan" };
     } else {
-      return { succes: false, message: "Password Salah" };
+      isPasswordMatch = await passwordCheck(query.password, check.password);
     }
+  } else {
+    isPasswordMatch = await passwordCheck(query.password, check.password);
+  }
+
+  async function passwordCheck(inputPassword, realPassword) {
+    const isPasswordMatch = await bcrypt.compare(inputPassword, realPassword);
+    return isPasswordMatch;
+  }
+
+  if (isPasswordMatch) {
+    return { succes: true, message: "Masuk", akun: check };
+  } else {
+    return { succes: false, message: "Password Salah" };
   }
 };
 

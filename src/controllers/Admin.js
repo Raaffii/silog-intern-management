@@ -20,12 +20,14 @@ const tampilDashboard = async (req, res) => {
 
 const viewDashboard = async (req, res) => {
   const data = await readDataPengajuan(req.params.id);
+  const dataKabiro = await readDataKabiro();
 
   return res.render("home", {
     layout: "layouts/main-layout",
     akun: req.session.user,
     msg: req.flash("msg"),
     data: data,
+    dataKabiro: dataKabiro,
   });
 };
 
@@ -42,7 +44,10 @@ const tampilEdit = async (req, res) => {
 };
 
 const tambahDataKabiro = async (req, res) => {
-  await tambahKabiro(req.body);
+  const dataKabiro = await tambahKabiro(req.body);
+  if (dataKabiro) {
+    req.flash("msg", dataKabiro.message);
+  }
   res.redirect("/admin/edit");
 };
 

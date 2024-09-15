@@ -257,9 +257,9 @@
               <div class="modal-body">
                 <form action="/admin/dashboard/<%= id  %>" method="post">
                   <select class="form-select" aria-label="Default select example" name="biro">
-                    <option value="1">Kabiro IT</option>
-                    <option value="2">Kabiro SDM</option>
-                    <option value="3">Kabiro Ifrastruktur</option>
+                    <% dataKabiro.forEach((dk,i) => { %>
+                    <option value="<%=dk._id %>"><%=dk.kabiro %></option>
+                    <% }) %>
                   </select>
                   <br>
                   <button type="submit">Kirim</button>

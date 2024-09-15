@@ -26,13 +26,13 @@ const tampilLogin = (req, res) => {
 
 const login = async (req, res) => {
   const result = await loginCheck(req.body);
-
+  console.log(result.akun);
   if (result.succes) {
     const akun = {
-      username: result.akun.username,
-      email: result.akun.email,
-      id: result.akun._id,
-      role: result.akun.roleId,
+      username: result.akun.username ? result.akun.username : result.akun.kabiro,
+      email: result.akun.email ? result.akun.email : "biro@gmail.com",
+      id: result.akun._id ? result.akun._id.toString() : "7", // Menggunakan _id dan mengubahnya menjadi string jika perlu
+      role: result.akun.roleId ? result.akun.roleId : "20",
     };
     req.session.user = akun;
     if (result.akun.roleId == 1) {

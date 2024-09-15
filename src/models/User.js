@@ -20,7 +20,7 @@ const user = mongoose.model("user", {
     type: Number,
   },
   biro: {
-    type: Number,
+    type: String,
   },
 });
 
