@@ -61,6 +61,9 @@ const tb_pengajuan = mongoose.model("tb_pengajuan", {
   status: {
     type: Number,
   },
+  biro: {
+    type: String,
+  },
 });
 
 module.exports = { tb_pengajuan };

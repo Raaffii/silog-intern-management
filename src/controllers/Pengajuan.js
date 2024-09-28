@@ -1,17 +1,8 @@
-const {
-  insertDataPengajuan,
-  updateTambahStatus,
-} = require("../services/Pengajuan");
+const { insertDataPengajuan, updateTambahStatus } = require("../services/Pengajuan");
 const { updateBiro } = require("../services/User");
 const { upload, handleMulterError } = require("../../utils/multer");
 
-const uploadFile = upload.fields([
-  { name: "ktp" },
-  { name: "foto" },
-  { name: "ktm" },
-  { name: "proposal" },
-  { name: "asuransi" },
-]);
+const uploadFile = upload.fields([{ name: "ktp" }, { name: "foto" }, { name: "ktm" }, { name: "proposal" }, { name: "asuransi" }]);
 
 handleMulterErrorController = handleMulterError;
 
@@ -36,13 +27,12 @@ const submitPengajuan = async (req, res) => {
       tanggalmulai: req.body.tanggalMulai,
       tanggalselesai: req.body.tanggalSelesai,
       ktm: req.files["ktm"][0].filename,
-      asuransi: req.files["asuransi"]
-        ? req.files["asuransi"][0].filename
-        : null,
+      asuransi: req.files["asuransi"] ? req.files["asuransi"][0].filename : null,
       ktp: req.files["ktp"][0].filename,
       foto: req.files["foto"][0].filename,
       proposal: req.files["proposal"][0].filename,
       status: 1,
+      biro: "0",
     };
     const result = await insertDataPengajuan(dataToSave);
     req.flash("msg", result.message);

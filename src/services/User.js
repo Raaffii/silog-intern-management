@@ -1,5 +1,6 @@
 const { kabiro } = require("../models/Kabiro.js");
 const { user } = require("../models/User.js");
+const { tb_pengajuan } = require("../models/Pengajuan.js");
 const bcrypt = require("bcrypt");
 
 const insertDataSignup = async (query) => {
@@ -56,6 +57,7 @@ const loginCheck = async (query) => {
 
 const updateBiro = async (biro, id) => {
   await user.updateOne({ _id: id }, { $set: { biro: biro } });
+  await tb_pengajuan.updateOne({ user: id }, { $set: { biro: biro } });
 };
 
 module.exports = { insertDataSignup, loginCheck, updateBiro };

@@ -1,13 +1,14 @@
-const {
-  readDataPengajuan,
-  kelompokanPengajuan,
-  readDataDetail,
-} = require("../services/Pengajuan");
-
+const { readDataPengajuan, kelompokanPengajuan, readDataDetail, readDataPengajuanKabiro } = require("../services/Pengajuan");
 const { tambahKabiro, readDataKabiro } = require("../services/Kabiro");
 
 const tampilDashboard = async (req, res) => {
-  const data = (await readDataPengajuan(2)) || [];
+  let data = 0;
+  if (req.session.user.role == 20) {
+    console.log("sini");
+    data = (await readDataPengajuanKabiro(3, req.session.user.id)) || [];
+  } else {
+    data = (await readDataPengajuan(2)) || [];
+  }
   const data2 = (await kelompokanPengajuan(data)) || [];
   // Kirimkan hasil
   return res.render("homeAdmin", {
@@ -20,6 +21,7 @@ const tampilDashboard = async (req, res) => {
 
 const viewDashboard = async (req, res) => {
   const data = await readDataPengajuan(req.params.id);
+
   const dataKabiro = await readDataKabiro();
 
   return res.render("home", {

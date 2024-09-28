@@ -89,10 +89,17 @@ const updateTambahStatus = async (id) => {
   return statusBaru;
 };
 
+const readDataPengajuanKabiro = async (status, id) => {
+  console.log(id);
+  const data = await tb_pengajuan.find({ biro: id, status: 3 });
+  return data;
+};
+
 module.exports = {
   insertDataPengajuan,
   readDataPengajuan,
   deleteDataPengajuan,
   updateTambahStatus,
   kelompokanPengajuan,
+  readDataPengajuanKabiro,
 };
