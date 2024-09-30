@@ -53,10 +53,17 @@ const konfirmasiPengajuanAdmin = (req, res) => {
   res.redirect("/admin/dashboard");
 };
 
+const accKabiro = async (req, res) => {
+  const { akunid, akunuser } = req.body;
+  updateTambahStatus(akunuser);
+  res.redirect("/kabiro/dashboard");
+};
+
 module.exports = {
   submitPengajuan,
   uploadFile,
   ajukanPengajuan,
   konfirmasiPengajuanAdmin,
+  accKabiro,
   handleMulterErrorController,
 };

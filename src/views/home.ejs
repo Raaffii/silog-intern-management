@@ -257,9 +257,10 @@
               <div class="modal-body">
                 Terima Magang
               </div>
-              <form action="/mahasiswa/dashboard/<%= akun.username %>" method="post">
+              <form action="/kabiro/acckabiro/<%= akun.id %>" method="post">
                 <div class="modal-footer">
                   <input type="hidden" value="<%= akun.id  %>" name="akunid">
+                  <input type="hidden" value="<%= id  %>" name="akunuser">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button class="btn btn-primary" type="submit">konfirmasi</button>
                 </div>
@@ -290,9 +291,7 @@
                   <br>
                   <button type="submit">Kirim</button>
                 </form>
-
               </div>
-
             </div>
           </div>
         </div>

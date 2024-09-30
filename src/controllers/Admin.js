@@ -10,6 +10,7 @@ const tampilDashboard = async (req, res) => {
     data = (await readDataPengajuan(2)) || [];
   }
   const data2 = (await kelompokanPengajuan(data)) || [];
+  console.log(data);
   // Kirimkan hasil
   return res.render("homeAdmin", {
     layout: "layouts/main-layout",

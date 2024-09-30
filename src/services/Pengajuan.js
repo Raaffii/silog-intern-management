@@ -83,7 +83,7 @@ const kelompokanPengajuan = async (data) => {
 const updateTambahStatus = async (id) => {
   console.log(id);
   const dataPengajuan = await user.findOne({ _id: id }, "status");
-  const statusBaru = (await dataPengajuan.status) + 1;
+  const statusBaru = dataPengajuan.status + 1;
   await user.updateOne({ _id: id }, { $set: { status: statusBaru } });
   await tb_pengajuan.updateMany({ user: id }, { $set: { status: statusBaru } });
   return statusBaru;

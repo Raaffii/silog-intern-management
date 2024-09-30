@@ -57,7 +57,7 @@ const loginCheck = async (query) => {
 
 const updateBiro = async (biro, id) => {
   await user.updateOne({ _id: id }, { $set: { biro: biro } });
-  await tb_pengajuan.updateOne({ user: id }, { $set: { biro: biro } });
+  await tb_pengajuan.updateMany({ user: id }, { $set: { biro: biro } });
 };
 
 module.exports = { insertDataSignup, loginCheck, updateBiro };
