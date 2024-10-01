@@ -69,10 +69,16 @@
       <h1><i class="mdi mdi-arrow-right"></i></h1>
     </div>
 
+    <% if(ongoing <=4){ %>
     <!-- Button 4 -->
-    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 4) ? 'rgba(255, 123, 0, 0.9)' : 'rgba(249, 249, 249, 0.9)' %>;">
-      Hasil
+    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 4) ? 'rgba(174, 255, 0)' : 'rgba(249, 249, 249, 0.9)' %>;">
+      Hasil (Anda Diterima Magang)
     </div>
+    <% } else if(ongoing <= 404){ %>
+    <div class="btn btn-rounded" style="background-color: <%= (data[0]&&data[0].status == 4) && 'rgba(174, 255, 0)'  %>;">
+      Hasil (Anda Diterima Magang)
+    </div>
+    <% } %>
   </div>
   <% } %>
 
